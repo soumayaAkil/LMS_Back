@@ -1,4 +1,4 @@
-const db = require('../util/database');
+const db = require('../../Config/database');
 /**
  *
  */
@@ -16,4 +16,7 @@ module.exports = class matiere {
     static countMatieres(id_enseignant){
       return db.execute('SELECT count(*) FROM matiere WHERE id_user = ?', [id_enseignant]);
     }
+
+
+
 };

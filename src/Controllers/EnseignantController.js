@@ -1,7 +1,6 @@
 const classe= require('../models/ClasseModel');
 const matiere=require('../models/MatiereModel');
 const etudiant=require('../models/EtudiantModel');
-const{ validationResult } = require('express-validator');
 const { type } = require('express/lib/response');
 
      /*
@@ -156,3 +155,4 @@ listEtud.push(jsonEtud);
         }
      
     };
+  

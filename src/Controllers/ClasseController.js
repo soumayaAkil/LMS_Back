@@ -1,7 +1,6 @@
 const classe= require('../models/ClasseModel');
 const matiere=require('../models/MatiereModel');
 const etudiant=require('../models/EtudiantModel');
-const{ validationResult } = require('express-validator');
 
  
  // delete classe
@@ -21,21 +20,7 @@ exports.delete = async(req, res, next) => {
       }
    
   };
-   
- // delete matiere
-exports.delete = async(req, res, next) => {
-  try {
-    id_matiere=req.params.id_matiere;
-  const resultat = await matiere.delete(id_matiere);
-  res.status(200).json(resultat);
-
-    res.json('true')
-   
-  }catch(err) {
-    res.status(500).json('false');
-      }
-   
-  };
+ 
   //getAll classes
 exports.getAllClasses = async(req, res, next) => {
 try {
