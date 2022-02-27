@@ -35,8 +35,8 @@ module.exports = class classe {
       static delete(id_classe) {
         return db.execute('DELETE FROM classe WHERE id_classe = ?', [id_classe]);
       }
-      static countStudents(id_classe){
-        return db.execute('SELECT count(*) FROM classe WHERE id_classe = ?', [id_classe]);
+      static countStudents(id_classe,etud){
+        return db.execute('SELECT count(*) FROM user WHERE id_classe = ? AND type=?', [id_classe,etud]);
       }
       static fetchAll(){
         return db.execute ('SELECT * FROM classe');

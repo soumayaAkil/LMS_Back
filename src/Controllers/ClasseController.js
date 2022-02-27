@@ -6,7 +6,8 @@ const etudiant=require('../models/EtudiantModel');
  // delete classe
 exports.delete = async(req, res, next) => {
   try {
-    id_classe=req.params.id_classe;
+    id_classe=req.query.id_classe;
+    console.log(id_classe)
   const resultat = await classe.delete(id_classe);
   res.status(200).json('true');
    
@@ -25,16 +26,18 @@ exports.delete = async(req, res, next) => {
 exports.getAllClasses = async(req, res, next) => {
 try {
 const [tabClasses] = await classe.fetchAll();
+console.log(tabClasses[0])
 let classesList=[];
 for(var i=0;i<tabClasses.length;i++)
 {
-  id_classe=tabClasses[0][i].id_classe;
-  namee=tabClasses[0][i].name;
-  shortName=tabClasses[0][i].shortName;
-  year=tabClasses[0][i].year;
-  department=tabClasses[0][i].department;
-  creationDate=tabClasses[0][i].creationDate;
-const studentsNumber =await classe.countStudents(id_classe);
+  id_classe=tabClasses[i].id_classe;
+  namee=tabClasses[i].name;
+  shortName=tabClasses[i].shortName;
+  year=tabClasses[i].year;
+  department=tabClasses[i].department;
+  creationDate=tabClasses[i].creationDate;
+const [studentsNumber] =await classe.countStudents(id_classe,"etudiant");
+let nb=studentsNumber[0];
 let json = {
   id_classe:id_classe,
   name: `${namee}`,
@@ -42,7 +45,7 @@ let json = {
   year:`${year}`,
   department:`${department}`,
   creationDate:`${creationDate}`,
-  studentsNumber:studentsNumber
+  studentsNumber:nb
 
   
 }
