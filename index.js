@@ -3,6 +3,12 @@ const bodyParser = require('body-parser');
 const classeRoute = require("./src/Routes/ClasseRoute");
 const enseignantRoute=require("./src/Routes/EnseignantRoute");
 const matRoute=require("./src/Routes/MatiereRoute");
+const chapitreRoute = require("./src/Routes/ChapitreRoute");
+const testRoute = require("./src/Routes/testRoute");
+const userRoute = require("./src/Routes/UserRoute");
+const attachementsRoute = require("./src/Routes/AttachementsRoute");
+
+
 var dbConn= require('./Config/db')
 // create express app
 const app = express();
@@ -22,6 +28,11 @@ app.use(cors({origin:"http://localhost:3000"}));
 app.use("/Enseignanat",enseignantRoute);
 app.use("/Classe",classeRoute);
 app.use("/Matiere",matRoute);
+app.use("/Chapitre",chapitreRoute);
+app.use("/Test",testRoute);
+app.use("/User",userRoute);
+app.use("/Attachement",attachementsRoute);
+
 // listen for requests
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
