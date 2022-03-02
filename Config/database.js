@@ -5,7 +5,7 @@ const mysql = require("mysql2");
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'backsql'
+       database: 'backsql'
     });
     
     module.exports = pool.promise();
