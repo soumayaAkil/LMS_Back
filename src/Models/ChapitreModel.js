@@ -24,7 +24,7 @@ module.exports = class chapitre {
       }
 
       static getChapitreByMat(id_mat) {
-        return db.execute('SELECT * FROM chapitre WHERE id_mat = ?', [id_mat]);
+        return db.execute('SELECT * FROM chapitre WHERE id_matiere = ?', [id_mat]);
       }
 
       static save(name,shortName,hours,descr,semester,creationDate,id_mat){
@@ -33,7 +33,7 @@ module.exports = class chapitre {
     }
 
     static put(name,shortName,hours,descr,semester,creationDate,id_mat,id_chapitre){
-      return db.execute('UPDATE chapitre SET name = ?,shortName = ?,hours = ?,descr = ?,semester = ?,creationDate = ?, id_mat = ? WHERE id_chapitre = ?',
+      return db.execute('UPDATE chapitre SET name = ?,shortName = ?,hours = ?,descr = ?,semester = ?,creationDate = ?, id_matiere = ? WHERE id_chapitre = ?',
       [name,shortName,hours,descr,semester,creationDate,id_mat,id_chapitre]);
   }
 }
