@@ -23,5 +23,14 @@ module.exports = class matiere {
     static fetchByIdMat(id_matiere){
       return db.execute('SELECT * FROM chapitre WHERE id_matiere = ?', [id_matiere]);
     }
+    static updateM(id_matiere,namee,shortName,type,hours,descr,coef,creationDate,id_user,id_classe){
+      console.log(db.execute('UPDATE matiere SET name = ?,shortName = ?,type=?,hours = ?,descr = ?,coef = ?,creationDate = ?, id_user = ? ,id_classe=?  WHERE id_matiere = ?'
+     
+      ,[namee,shortName,type,hours,descr,coef,creationDate,id_user,id_classe,id_matiere]))
+  return db.execute('UPDATE matiere SET name = ?,shortName = ?,type=?,hours = ?,descr = ?,coef = ?,creationDate = ?, id_user = ? ,id_classe=?  WHERE id_matiere = ?'
+     
+,[namee,shortName,type,hours,descr,coef,creationDate,id_user,id_classe,id_matiere]);
+    }
+    
 
 };

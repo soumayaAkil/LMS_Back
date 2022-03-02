@@ -28,7 +28,7 @@ module.exports = class chapitre {
       }
 
       static save(name,shortName,hours,descr,semester,creationDate,id_mat){
-        return db.execute('INSERT  INTO chapitre (name,shortName,hours,descr,semester,creationDate,id_mat) VALUES (?,?,?,?,?,?,?)',
+        return db.execute('INSERT  INTO chapitre (name,shortName,hours,descr,semester,creationDate,id_matiere) VALUES (?,?,?,?,?,?,?)',
         [name,shortName,hours,descr,semester,creationDate,id_mat]);
     }
 
