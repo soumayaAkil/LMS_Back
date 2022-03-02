@@ -22,12 +22,12 @@ module.exports = class classe {
         return db.execute('UPDATE matiere SET id_classe = ? WHERE id_matiere = ?',[id_classe,mat]);
     }
     static setProf(id_classe,prof){
-        return db.execute('UPDATE matiere SET id_classe = ? WHERE id_enseignant = ?',[id_classe,prof]);
+        return db.execute('UPDATE matiere SET  id_user = ? WHERE id_classe = ? ',[prof,id_classe]);
     }
 
   
       static updateClasse(id_classe,name,shortName,year,department,creationDate) {
-        return db.execute('UPDATE classe SET name = ?, shortName= ? ,year= ? ,departement= ? , creationDate= ? WHERE id_classe = ?',
+        return db.execute('UPDATE classe SET name = ?, shortName= ? ,year= ? ,department= ? , creationDate= ? WHERE id_classe = ?',
          [name,shortName,year,department,creationDate,id_classe]);
       }
 
@@ -46,11 +46,12 @@ module.exports = class classe {
         return db.execute ('SELECT * FROM classe WHERE id_classe=?',[id_classe]);
      
     }
-    static setClasse(id_classe,id_etudiant){
-        return db.execute('UPDATE etudiant SET id_classe = ? WHERE id_etudiant = ?',
+    static setClass(id_classe,id_etudiant){
+   
+        return db.execute('UPDATE user SET id_classe = ? WHERE id_user = ?',
         [id_classe,id_etudiant]);
      }
      static getId() {
-        return db.execute ('SELECT max(id_classe) FROM classe ');
+        return db.execute ('SELECT max(id_classe) as id FROM classe ');
      } 
 };

@@ -72,10 +72,10 @@ exports.getClasseById = async(req, res, next) => {
 
     namee=ClasseLigne[0].name;
     shortName=ClasseLigne[0].shortName;
-    year=tabClasses[0].year;
+    year=ClasseLigne[0].year;
     department=ClasseLigne[0].department;
     creationDate=ClasseLigne[0].creationDate;
-  let jsonclasse = {
+  let Classe = {
     id_classe:id_classe,
     name: `${namee}`,
     shortName:`${shortName}`,
@@ -83,34 +83,33 @@ exports.getClasseById = async(req, res, next) => {
     department:`${department}`,
     creationDate:`${creationDate}`    
   }
+  
   //retourne les id etudiants tab
   const [Etudiants] = await etudiant.fetchByIdClasse(id_classe,"etudiant");
-  let tab=[];
+  let ListEtudiants=[];
   for(var i=0;i<Etudiants.length;i++)
 {
-  id_etudiant=Etudiants[0][i].id_user;
-  tab.push(id_etudiant);
+  id_etudiant=Etudiants[i].id_user;
+  ListEtudiants.push(id_etudiant);
 }
 
 
   //tab couple jsoncouple
-  let coupleList=[];
+  let IDMat=[];
   const [Matieres] = await matiere.fetchByIdClasse(id_classe);
   for(var i=0;i<Matieres.length;i++)
   {
-  id_chapitre=Matieres[0].id_chapitre;
+ 
   id_matiere=Matieres[0].id_matiere;
-let jsoncouple = {
-  id_matiere:id_matiere,
- id_chapitre:id_chapitre,  
-}
-coupleList.push(jsoncouple);
+/*
+  const [Chap] = await matiere.fetchByIdMat(id_matiere);
+ id_chapitre=Chap[0].id_chapitre;
+*/
+
+
+ IDMat.push(id_matiere);
 }    
-
-
-
-
-        res.status(200).json(jsonclasse,coupleList,tab);
+        res.status(200).json({Classe,IDMat,ListEtudiants});
   }catch(err) {
     res.status(500).json('false');
   
@@ -118,51 +117,64 @@ coupleList.push(jsoncouple);
    
   };
 exports.create=async(req,res,next)=>{
-  let classeToAdd =req.body;
- // {hgcg,c,c},[{idmatiere,idprof},{idmatiere,idprof}],[1,2,3]}
-  //sinon classeToAdd[0][1]
-  c=classeToAdd[0]
-  tabmatier=classeToAdd[1]
-  etudiants=classeToAdd[2]
   try{
-    const res =await classe.save(c.name,c.shortName,c.year,c.department,c.creationDate);
-    let id_classe=await classe.getId();
+  let classeToAdd =req.body;
+  /*
+  {
+  name: 'ss',
+  shortName: 'sss',
+  year: '2020',
+  department: 'ss',
+  creationDate: '12-10-2020'
+}
+[ { id_matiere: 1, id_user: 1 }, { id_matiere: 2, id_user: 1 } ]
+[ 1, 2, 3 ]*/
+  let c=classeToAdd.classe
+  let tabmatier=classeToAdd.matieres;
+   let etudiants=classeToAdd.etudiant;
+
+    const ress =await classe.save(c.name,c.shortName,c.year,c.department,c.creationDate);
+    let [Mclasse]=await classe.getId();
+    
+    let id_classe=Mclasse[0].id ;
 for(var i=0;i<etudiants.length;i++){
-  const rest =await classe.setClasse(id_classe,etudiants[i]);
+
+  const rest =await classe.setClass(id_classe,etudiants[i]);
 }
 for(var j=0;j<tabmatier.length;j++){
-  const resultat =await classe.setMat(id_classe,tabmatier[j][1]);
-  const resultt =await classe.setProf(id_classe,tabmatier[j][2]);
+  const resultat =await classe.setMat(id_classe,tabmatier[j].id_matiere);
+  const resultt =await classe.setProf(id_classe,tabmatier[j].id_user);
 }
     res.status(200).json('true');
-  }catch{
+  }catch(err) {
     res.status(500).json('false');
-
-  }
+  
+      }
 }
 exports.update=async(req,res,next)=>{
   let classeToAdd =req.body;
  // {hgcg,c,c},[{idmatiere,idprof},{idmatiere,idprof}],[1,2,3]}
   //sinon classeToAdd[0][1]
-  c=classeToAdd[0]
-  tabmatier=classeToAdd[1]
-  etudiants=classeToAdd[2]
+  let c=classeToAdd.classe
+  let tabmatier=classeToAdd.matieres;
+   let etudiants=classeToAdd.etudiant;
   try{
     let id_classe=await c.id_classe;
-    const res =await classe.updateClasse(id_classe,c.name,c.shortName,c.year,c.department,c.creationDate);
+    const ress =await classe.updateClasse(id_classe,c.name,c.shortName,c.year,c.department,c.creationDate);
     
 for(var i=0;i<etudiants.length;i++){
-  const rest =await classe.setClasse(id_classe,etudiants[i]);
+  const rest =await classe.setClass(id_classe,etudiants[i]);
 }
 for(var j=0;j<tabmatier.length;j++){
-  const resultat =await classe.setMat(id_classe,tabmatier[j][1]);
-  const resultt =await classe.setProf(id_classe,tabmatier[j][2]);
+  const resultat =await classe.setMat(id_classe,tabmatier[j].id_matiere);
+  const resultt =await classe.setProf(id_classe,tabmatier[j].id_user);
 }
     res.status(200).json('true');
-  }catch{
+  }catch(err) {
+    console.log(err)
     res.status(500).json('false');
-
-  }
+  
+      }
 }
 
   
