@@ -6,7 +6,7 @@ const attachments=require('../models/AttachementsModel');
 
   exports.save= async (req,res,next)=>{
 
-    name =req.body.name;
+
     let date_ob = new Date();
     creationDate  =date_ob;
     id_chapitre=req.body.id_chapitre;
@@ -14,7 +14,7 @@ const attachments=require('../models/AttachementsModel');
 
   
 
-    const ress= await attachments.save(name,creationDate,id_chapitre);
+    const ress= await attachments.save(creationDate,id_chapitre);
     rows = ress[0];
     console.log("rowss ",rows)
     if(rows.length !== 0)

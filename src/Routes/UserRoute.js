@@ -7,6 +7,6 @@ router.get('/GetUser/:id_user', UserController.getUser);
 router.post('/InvitUser', UserController.InvitUser);
 router.put('/InscriUser/:id_user', UserController.InscriUser);
 router.put('/CancelInvitation/:id_user', UserController.CancelInvitation);
-//router.post('/uploadFiles',authController.isUserConnected,filesController.filesUpload.single('file'),filesController.uploadFiles);
+router.post('/uploadFiles',filesController.filesUpload.single('file'),filesController.uploadFiles);
 
 module.exports=router;

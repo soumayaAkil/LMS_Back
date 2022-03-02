@@ -37,5 +37,12 @@ module.exports = class User {
         return db.execute('UPDATE user SET invitation = ? WHERE id_user = ?', [invitation,id_user]);
       }
 
+      static MaxIdUser() {
+        return db.execute('SELECT MAX(id_user) as id_user from user = ?');
+      }
+
+      static SetImageUser(photo,id_user) {
+        return db.execute('INSERT INTO user (photo) VALUES (?) WHERE id_user = ?', [photo,id_user]);
+      }
      
 }
