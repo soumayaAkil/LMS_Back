@@ -18,7 +18,7 @@ exports.userLogin = async function (req, res) {
         photo: user[0].photo,
         type: user[0].type
     }
-    console.log(objToSend);
+
     res.status(200).send(objToSend);
 
 }
