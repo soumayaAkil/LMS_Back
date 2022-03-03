@@ -1,6 +1,7 @@
 const test=require('../models/testModel');
 const chapitre=require('../Models/ChapitreModel')
 const reponse=require('../Models/reponseModel')
+const restestt=require('../Models/resTestModel')
 
  // delete chapitre
  exports.delete = async(req, res, next) => {
@@ -147,17 +148,12 @@ const reponse=require('../Models/reponseModel')
       //Submit test 
      exports.submitTest = async (req,res,next)=>{
         let tab= req.body.quesRep[0].reponses;
-        console.log(req.body.quesRep[0].idQuestion);
-        console.log( req.body.quesRep[0].reponses);
-        
+        const id_user = req.body.id_user;
+        const id_test = req.body.idTest;
          let restest =0 ;
          idQuestion=req.body.quesRep[0].idQuestion;
          const repres=await reponse.findRepByQuestId(idQuestion); 
-        console.log((repres[0]))
-        console.log((repres[0]).length)
-        console.log(tab.length)        
-       
-        console.log(tab);
+     
         if(repres[0].length!=tab.length){
           
             restest=restest+0;
@@ -185,7 +181,6 @@ const reponse=require('../Models/reponseModel')
                 restest=restest+0;
             }else{
                 let pondquest=await test.getponderation(idQuestion);   
-                console.log(pondquest[0][0].Marks)
               restest=restest+(pondquest[0][0].Marks);
             }
         }
@@ -195,6 +190,7 @@ const reponse=require('../Models/reponseModel')
          
          
          })
+         let saverestest=await restestt.save(restest,id_user,id_test);
      
   };
       

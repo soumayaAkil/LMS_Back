@@ -5,10 +5,10 @@ const db = require('../../Config/dbConfig');
 
 
 module.exports = class test {
-    constructor(duration,date,idChapitre,published){
+    constructor(duration,date,id_chapitre,published){
         duration=this.duration;
         date=this.date;
-        idChapitre=this.idChapitre;
+        id_chapitre=this.id_chapitre;
         published=this.published;
        
     }
@@ -17,13 +17,13 @@ module.exports = class test {
         return db.execute('DELETE FROM test WHERE idTest = ?', [idTest]);
       }
       //Edit test
-      static update(duration,date,idChapitre,published,idTest) {
-        return db.execute('UPDATE test SET duration  = ?, date = ?, idChapitre =?, published =? WHERE idTest = ?', 
-        [duration,date,idChapitre,published,idTest]);
+      static update(duration,date,id_chapitre,published,idTest) {
+        return db.execute('UPDATE test SET duration  = ?, date = ?, id_chapitre =?, published =? WHERE idTest = ?', 
+        [duration,date,id_chapitre,published,idTest]);
       }
       //test detail
       static testDetails(idTest){
-        return db.execute ('SELECT chapitre.name,chapitre.semester,test.date ,test.duration  FROM chapitre JOIN test ON chapitre.id_chapitre = test.idChapitre  WHERE idTest = ?',[idTest]);
+        return db.execute ('SELECT chapitre.name,chapitre.semester,test.date ,test.duration  FROM chapitre JOIN test ON chapitre.id_chapitre = test.id_chapitre  WHERE idTest = ?',[idTest]);
     }
     static testDetailsQ(idTest){
         return db.execute('SELECT question.idQuestion,question.questionText,reponse.idReponse,reponse.answerText From question JOIN test  ON question.idTest = test.idTest Join reponse ON reponse.idQuestion = question.idQuestion WHERE test.idTest = ?',[idTest]);
@@ -33,7 +33,7 @@ module.exports = class test {
     static findTestByChapitre(id_chapitre){
         
         return db.execute(
-            'SELECT * FROM test WHERE idChapitre = ?',[id_chapitre]);
+            'SELECT * FROM test WHERE id_chapitre = ?',[id_chapitre]);
         
     }
     //findTestById
@@ -43,9 +43,9 @@ module.exports = class test {
         
     }
     //Add test
-    static save(duration,date,idChapitre,published){
-        return db.execute('INSERT  INTO test (duration,date,idChapitre,published) VALUES (?,?,?,?)',
-        [duration,date,idChapitre,published]);
+    static save(duration,date,id_chapitre,published){
+        return db.execute('INSERT  INTO test (duration,date,id_chapitre,published) VALUES (?,?,?,?)',
+        [duration,date,id_chapitre,published]);
     }
       static fetchByIdTest(idTest) {
         return db.execute('SELECT * FROM test WHERE idTest = ?',[idTest]);

@@ -11,4 +11,9 @@ module.exports = class resTest {
     static fetchResultatsByUser(id_user) {
         return db.execute('SELECT * FROM restest WHERE id_user = ?',[id_user]);
       }
+     //save restest 
+      static save (totalMarks,id_user,idTest){
+        return db.execute('INSERT  INTO restest (totalMarks,id_user,idTest) VALUES (?,?,?)',
+        [totalMarks,id_user,idTest]);
+      }
 }
