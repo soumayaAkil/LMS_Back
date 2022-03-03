@@ -47,4 +47,7 @@ module.exports = class test {
         return db.execute('INSERT  INTO test (duration,date,idChapitre,published) VALUES (?,?,?,?)',
         [duration,date,idChapitre,published]);
     }
+      static fetchByIdTest(idTest) {
+        return db.execute('SELECT * FROM test WHERE idTest = ?',[idTest]);
+      }
 }

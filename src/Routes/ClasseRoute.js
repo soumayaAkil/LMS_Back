@@ -5,5 +5,5 @@ router.get('/GetAllClasses', ClasseController.getAllClasses);
 router.put('/UpdateClasse', ClasseController.update);
 router.post('/PostClasse', ClasseController.create);
 router.delete('/DeleteClasse', ClasseController.delete);
-router.get('/getClassetoedit', ClasseController.getClasseById);
+router.get('/getClassetoedit/:id_classe', ClasseController.getClasseById);
 module.exports=router;  

@@ -48,7 +48,7 @@ exports.getDetailChapitre= async (req,res,next)=>{
   let descr=results.descr;
   let semester=results.semester;
   let creationDate=results.creationDate;
-  let id_mat=results.id_mat;
+  let id_matiere=results.id_matiere;
 
 
 
@@ -61,7 +61,7 @@ exports.getDetailChapitre= async (req,res,next)=>{
             descr:descr,
             semester:semester,
             creationDate:creationDate,
-            id_mat:id_mat,
+            id_matiere:id_matiere,
             attachment:resultAttach
         };
 
@@ -83,8 +83,8 @@ exports.getDetailChapitre= async (req,res,next)=>{
 // get chapitre by mat
 exports.getChapitreByMat= async (req,res,next)=>{
 
-    const id_mat = req.params.id_mat;
-    const data = await chapitre.getChapitreByMat(id_mat);
+    const id_matiere = req.params.id_matiere;
+    const data = await chapitre.getChapitreByMat(id_matiere);
     const results = data[0];
 
     console.log("resulllll",results.length);
@@ -105,7 +105,7 @@ exports.getChapitreByMat= async (req,res,next)=>{
         let descr=results[j].descr;
         let semester=results[j].semester;
         let creationDate=results[j].creationDate;
-        let id_matiree=results[j].id_mat;
+        let id_matiree=results[j].id_matiere;
       
       
       
@@ -118,7 +118,7 @@ exports.getChapitreByMat= async (req,res,next)=>{
                   descr:descr,
                   semester:semester,
                   creationDate:creationDate,
-                  id_mat:id_matiree,
+                  id_matiere:id_matiree,
                   attachment:resultAttach
               };
       
@@ -150,12 +150,12 @@ exports.getChapitreByMat= async (req,res,next)=>{
         semester  =req.body.semestre ;
         let date_ob = new Date();
         creationDate  =date_ob;
-        id_mat=req.body.id_mat;
+        id_matiere=req.body.id_matiere;
     
-        console.log(name,shortName,hours,descr,semester,creationDate,id_mat);
+        console.log(name,shortName,hours,descr,semester,creationDate,id_matiere);
       
     
-        const ress= await chapitre.save(name,shortName,hours,descr,semester,creationDate,id_mat);
+        const ress= await chapitre.save(name,shortName,hours,descr,semester,creationDate,id_matiere);
         rows = ress[0];
         console.log("rowss ",rows)
         if(rows.length !== 0)
@@ -186,12 +186,12 @@ exports.getChapitreByMat= async (req,res,next)=>{
     semester  =req.body.semestre ;
     let date_ob = new Date();
     creationDate  =date_ob;
-    id_mat=req.body.id_mat;
+    id_matiere=req.body.id_matiere;
 
 
   
 
-    const ress= await chapitre.put(name,shortName,hours,descr,semester,creationDate,id_mat,id_chapitre);
+    const ress= await chapitre.put(name,shortName,hours,descr,semester,creationDate,id_matiere,id_chapitre);
     rows = ress[0];
     console.log("rowss ",rows)
     if(rows.length !== 0)
