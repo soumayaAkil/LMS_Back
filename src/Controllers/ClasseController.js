@@ -99,15 +99,19 @@ exports.getClasseById = async(req, res, next) => {
   const [Matieres] = await matiere.fetchByIdClasse(id_classe);
   for(var i=0;i<Matieres.length;i++)
   {
- 
+  
+  id_user=Matieres[0].id_user;
   id_matiere=Matieres[0].id_matiere;
 /*
   const [Chap] = await matiere.fetchByIdMat(id_matiere);
  id_chapitre=Chap[0].id_chapitre;
 */
+let jmatid={
+  id_user,id_user,
+  id_matiere:id_matiere
+}
 
-
- IDMat.push(id_matiere);
+ IDMat.push(jmatid);
 }    
         res.status(200).json({Classe,IDMat,ListEtudiants});
   }catch(err) {

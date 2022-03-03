@@ -44,5 +44,8 @@ module.exports = class User {
       static SetImageUser(photo,id_user) {
         return db.execute('INSERT INTO user (photo) VALUES (?) WHERE id_user = ?', [photo,id_user]);
       }
+      static findOne(email){
+        return db.execute('SELECT * FROM user WHERE email = ?', [email]);
+      }
      
 }
