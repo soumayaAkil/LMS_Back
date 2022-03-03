@@ -13,4 +13,6 @@ router.get('/allTestChap/:idChapitre', testController.getTestByChapitre);
 router.post('/AddTest', testController.save);
 //Publish test
 router.put('/publishtest/:idTest',testController.publishupdate);
+//submit test
+router.get('/submittestttt/ok',testController.submitTest);
 module.exports=router;  

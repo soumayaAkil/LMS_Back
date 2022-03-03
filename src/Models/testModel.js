@@ -58,4 +58,10 @@ module.exports = class test {
     static getdate(idTest){
       return db.execute ('SELECT date FROM test  WHERE idTest = ?',[idTest]);
   }
+
+    //getponderationdequestion
+    static getponderation(idQuestion){
+        return db.execute(
+            'SELECT Marks FROM question WHERE  idQuestion = ?',[idQuestion]);     
+    }
 }

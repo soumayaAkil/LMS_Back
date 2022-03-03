@@ -1,5 +1,6 @@
 const test=require('../models/testModel');
 const chapitre=require('../Models/ChapitreModel')
+const reponse=require('../Models/reponseModel')
 
  // delete chapitre
  exports.delete = async(req, res, next) => {
@@ -125,6 +126,7 @@ const chapitre=require('../Models/ChapitreModel')
          
     exports.publishupdate = async (req,res,next)=>{
         const idTest = req.params.idTest;
+        console.log(idTest)
         const data = await test.getdate(idTest);
     const results = data[0][0];
     const dateprevu =(results.date).toString().slice(4,15);
@@ -142,5 +144,58 @@ const chapitre=require('../Models/ChapitreModel')
         }
       
       };
+      //Submit test 
+     exports.submitTest = async (req,res,next)=>{
+        let tab= req.body.quesRep[0].reponses;
+        console.log(req.body.quesRep[0].idQuestion);
+        console.log( req.body.quesRep[0].reponses);
+        
+         let restest =0 ;
+         idQuestion=req.body.quesRep[0].idQuestion;
+         const repres=await reponse.findRepByQuestId(idQuestion); 
+        console.log((repres[0]))
+        console.log((repres[0]).length)
+        console.log(tab.length)        
+       
+        console.log(tab);
+        if(repres[0].length!=tab.length){
+          
+            restest=restest+0;
+        }else{
+          
+              let  i=0;
+              let verif=true;
+              
+              while(verif==true && i<tab.length )
+              {let x=0;
+               let j=0;
+                while(x==0 && j<repres[0].length )
+                {    if(tab[i]==repres[0][j].idReponse){
+                      x=1;
+                    }
+                    j++
+
+                 }
+                if(x==0){
+                  verif=false;
+                }
+            i++
+            }
+            if(verif==false){
+                restest=restest+0;
+            }else{
+                let pondquest=await test.getponderation(idQuestion);   
+                console.log(pondquest[0][0].Marks)
+              restest=restest+(pondquest[0][0].Marks);
+            }
+        }
+        res.json ({note:restest
+           
+        
+         
+         
+         })
+     
+  };
       
       

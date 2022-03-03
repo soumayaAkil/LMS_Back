@@ -24,7 +24,11 @@ module.exports = class reponse{
         return db.execute('INSERT  INTO reponse (answerText,correct,idQuestion) VALUES (?,?,?)',
         [answerText,correct,idQuestion]);
     }
-  
+    //reponsebyidquestion
+    static findRepByQuestId(idQuestion){
+      return db.execute(
+          'SELECT * FROM reponse WHERE correct="1" AND idQuestion = ?',[idQuestion]);     
+  }
     
  
 
