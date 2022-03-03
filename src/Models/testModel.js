@@ -16,4 +16,7 @@ module.exports = class test {
     static delete(idTest) {
         return db.execute('DELETE FROM test WHERE idTest = ?', [idTest]);
       }
+      static fetchByIdTest(idTest) {
+        return db.execute('SELECT * FROM test WHERE idTest = ?',[idTest]);
+      }
 }

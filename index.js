@@ -7,6 +7,7 @@ const chapitreRoute = require("./src/Routes/ChapitreRoute");
 const testRoute = require("./src/Routes/testRoute");
 const userRoute = require("./src/Routes/UserRoute");
 const attachementsRoute = require("./src/Routes/AttachementsRoute");
+const EtudiantRoute = require("./src/Routes/EtudiantRoute");
 
 
 var dbConn= require('./Config/db')
@@ -32,6 +33,7 @@ app.use("/Chapitre",chapitreRoute);
 app.use("/Test",testRoute);
 app.use("/User",userRoute);
 app.use("/Attachement",attachementsRoute);
+app.use("/Etudiant",EtudiantRoute);
 
 // listen for requests
 app.listen(port, () => {
