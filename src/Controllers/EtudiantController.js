@@ -25,7 +25,7 @@ exports.loadStudentDetails= async (req,res,next)=>{
         for(var i=0;i<datarestest[0].length;i++){
          console.log("iiiiiiiiiiii",i);
           console.log("jjjjj",j);
-            const resultTestEtudiant =datarestest[0][i].resultat;
+            const resultTestEtudiant =datarestest[0][i].Marks;
             const datatest = await test.fetchByIdTest(datarestest[0][i].idTest);
           console.log("resultTestEtudiant",resultTestEtudiant);
         

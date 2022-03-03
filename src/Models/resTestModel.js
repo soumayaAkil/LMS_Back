@@ -1,11 +1,11 @@
 const db = require('../../Config/database');
 
 module.exports = class resTest {
-    constructor(id_res,id_user,idTest,res){
+    constructor(id_res,id_user,idTest,Marks){
         id_res=this.id_res;
         id_user=this.id_user;
         idTest=this.idTest;
-        resultat=this.rresultates;
+        Marks=this.Marks;
     }
 
     static fetchResultatsByUser(id_user) {
