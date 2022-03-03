@@ -4,8 +4,8 @@ const mysql = require('mysql2');
 const dbConn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'ROOT',
-  database : 'backsql'
+  password: '',
+  database : 'lms'
 });
 dbConn.connect(function(err) {
   if (err) throw err;
