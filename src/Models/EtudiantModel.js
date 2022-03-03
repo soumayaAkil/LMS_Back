@@ -7,6 +7,10 @@ module.exports = class etudiant {
     static fetchByIdClasse(id_classe,type) {
         return db.execute('SELECT * FROM user WHERE id_classe = ? AND type = ?', [id_classe,type]);
       }
+
+      static fetchEtudiants() {
+        return db.execute('SELECT * FROM user WHERE type = "etudiant"');
+      }
 };
 
 

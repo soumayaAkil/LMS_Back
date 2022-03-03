@@ -16,6 +16,17 @@ module.exports = class matiere {
     static countMatieres(id_enseignant){
       return db.execute('SELECT COUNT(*) AS c FROM matiere WHERE id_user = ?', [id_enseignant]);
     }
+    //get all matieres
+    static detailMatiere(){
+      return db.execute('SELECT * FROM matiere');
+    }
+    //add matiere
+    static save(name,hours,type,coef,shortname,descr,creationDate,id_classe){
+      return db.execute('INSERT  INTO matiere (name,hours,type,coef,shortname,descr,creationDate,id_classe) VALUES (?,?,?,?,?,?,?,?)',
+      [name,hours,type,coef,shortname,descr,creationDate,id_classe]);
+  }
+  
+  
 
     static fetchByIdProf(id_user) {
       return db.execute('SELECT * FROM matiere WHERE id_user = ?', [id_user]);

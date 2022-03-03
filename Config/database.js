@@ -5,6 +5,8 @@ const mysql = require("mysql2");
         host: 'localhost',
         user: 'root',
         password: '',
+        database: 'lms'
+        password: 'ROOT',
        database: 'backsql'
     });
     

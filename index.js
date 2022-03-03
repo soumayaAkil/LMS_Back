@@ -8,6 +8,10 @@ const testRoute = require("./src/Routes/testRoute");
 const userRoute = require("./src/Routes/UserRoute");
 const authRoute = require("./src/Routes/authRoutes");
 const attachementsRoute = require("./src/Routes/AttachementsRoute");
+const reponseRoute = require("./src/Routes/reponseRoute");
+const questionRoute = require("./src/Routes/questionRoute");
+const EtudiantRoute = require("./src/Routes/EtudiantRoute");
+
 const dotenv = require('dotenv');
 
 var dbConn= require('./Config/db')
@@ -34,6 +38,10 @@ app.use("/Chapitre",chapitreRoute);
 app.use("/Test",testRoute);
 app.use("/User",userRoute);
 app.use("/Attachement",attachementsRoute);
+app.use("/Reponse",reponseRoute);
+app.use("/Question",questionRoute);
+app.use("/Etudiant",EtudiantRoute);
+
 app.use("/auth",authRoute);
 // listen for requests
 app.listen(port, () => {
