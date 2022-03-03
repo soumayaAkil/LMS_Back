@@ -50,4 +50,12 @@ module.exports = class test {
       static fetchByIdTest(idTest) {
         return db.execute('SELECT * FROM test WHERE idTest = ?',[idTest]);
       }
+      //Publish test
+       static publish_test(idTest){
+        return db.execute ('UPDATE test SET published = "1" WHERE idTest = ?',[idTest]);
+    }
+    //get date 
+    static getdate(idTest){
+      return db.execute ('SELECT date FROM test  WHERE idTest = ?',[idTest]);
+  }
 }

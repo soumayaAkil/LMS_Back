@@ -121,5 +121,26 @@ const chapitre=require('../Models/ChapitreModel')
             });
          }
         }
+         //Publish test
+         
+    exports.publishupdate = async (req,res,next)=>{
+        const idTest = req.params.idTest;
+        const data = await test.getdate(idTest);
+    const results = data[0][0];
+    const dateprevu =(results.date).toString().slice(4,15);
+    const today = new Date();
+    const currentdat = today.toLocaleString("en-US", { month: "short" })+" "+"0"+(today.getDate()+1)+" "+today.getFullYear();
+
+        if(dateprevu == currentdat){
+            const publishTeste = await test.publish_test(req.params.idTest); 
+            res.json({succes:true}); 
+
+        }else if(dateprevu != currentdat) {
+            res.json({succes:false,
+            message:"incorrect date"}); 
+
+        }
+      
+      };
       
       
