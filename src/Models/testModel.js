@@ -23,10 +23,10 @@ module.exports = class test {
       }
       //test detail
       static testDetails(idTest){
-        return db.execute ('SELECT chapitre.name,chapitre.semester,test.date ,test.duration  FROM chapitre JOIN test ON chapitre.id_chapitre = test.id_chapitre  WHERE idTest = ?',[idTest]);
+        return db.execute ('SELECT chapitre.name,chapitre.semester,test.date ,test.duration  FROM chapitre JOIN test ON chapitre.id_chapitre = test.idChapitre  WHERE idTest = ?',[idTest]);
     }
     static testDetailsQ(idTest){
-        return db.execute('SELECT question.idQuestion,question.questionText,reponse.idReponse,reponse.answerText From question JOIN test  ON question.idTest = test.idTest Join reponse ON reponse.idQuestion = question.idQuestion WHERE test.idTest = ?',[idTest]);
+        return db.execute('SELECT question.idQuestion,question.questionText,question.Marks,reponse.idReponse,reponse.answerText From question JOIN test  ON question.idTest = test.idTest Join reponse ON reponse.idQuestion = question.idQuestion WHERE test.idTest = ?',[idTest]);
 
     }
     //list test by id chapitre
