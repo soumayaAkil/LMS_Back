@@ -25,6 +25,10 @@ module.exports = class test {
       static testDetails(idTest){
         return db.execute ('SELECT chapitre.name,chapitre.semester,test.date ,test.duration  FROM chapitre JOIN test ON chapitre.id_chapitre = test.idChapitre  WHERE idTest = ?',[idTest]);
     }
+      //il ya des tests dans ce chapitre 
+      static testInclutChap(id_chapitre){
+        return db.execute ('SELECT count(*) as nbrTest FROM test  WHERE id_chapitre = ?',[id_chapitre]);
+    }
     static testDetailsQ(idTest){
         return db.execute('SELECT question.idQuestion,question.questionText,question.Marks,reponse.idReponse,reponse.answerText From question JOIN test  ON question.idTest = test.idTest Join reponse ON reponse.idQuestion = question.idQuestion WHERE test.idTest = ?',[idTest]);
 
@@ -36,6 +40,12 @@ module.exports = class test {
             'SELECT * FROM test WHERE id_chapitre = ?',[id_chapitre]);
         
     }
+    static findIdTestByChapitre(id_chapitre){
+        
+      return db.execute(
+          'SELECT idTest FROM test WHERE id_chapitre = ?',[id_chapitre]);
+      
+  }
     //findTestById
     static findTestById(idTest){
         return db.execute(
