@@ -1,6 +1,7 @@
 const classe= require('../models/ClasseModel');
 const matiere=require('../models/MatiereModel');
 const etudiant=require('../models/EtudiantModel');
+const ens=require('../Models/EnseignantModel');
 
  
  // delete classe
@@ -37,7 +38,7 @@ for(var i=0;i<tabClasses.length;i++)
   department=tabClasses[i].department;
   creationDate=tabClasses[i].creationDate;
 const [studentsNumber] =await classe.countStudents(id_classe,"etudiant");
-let nb=studentsNumber[0];
+let nb=studentsNumber[0].nbclass;
 let json = {
   id_classe:id_classe,
   name: `${namee}`,
@@ -90,10 +91,19 @@ exports.getClasseById = async(req, res, next) => {
   for(var i=0;i<Etudiants.length;i++)
 {
   id_etudiant=Etudiants[i].id_user;
-  ListEtudiants.push(id_etudiant);
+  photo=Etudiants[i].photo;
+  lastName=Etudiants[i].lastName;
+  firstName=Etudiants[i].firstName;
+  let jsonetud = {
+    id_etudiant:id_etudiant,
+    photo: `${photo}`,
+    lastName:`${lastName}`,
+    firstName:`${firstName}`, 
+  }
+  ListEtudiants.push(jsonetud);
 }
 
-
+let id_enseignant;
   //tab couple jsoncouple
   let IDMat=[];
   const [Matieres] = await matiere.fetchByIdClasse(id_classe);
@@ -101,20 +111,38 @@ exports.getClasseById = async(req, res, next) => {
   {
   
   id_user=Matieres[0].id_user;
+  nameM=Matieres[0].name;
+  shortName=Matieres[0].shortName;
   id_matiere=Matieres[0].id_matiere;
-/*
+
   const [Chap] = await matiere.fetchByIdMat(id_matiere);
  id_chapitre=Chap[0].id_chapitre;
-*/
+
+const [prof] = await ens.fetchById(id_user);
+photo=prof[0].photo;
+firstName=prof[0].firstName;
+lastName=prof[0].lastName;
+
+
+const [nbTest]=await classe.countTests(id_chapitre);
+nbTestt=nbTest[0].nn;
 let jmatid={
-  id_user,id_user,
-  id_matiere:id_matiere
+  
+  id_matiere:id_matiere,
+  name:`${nameM}`, 
+  shortName:`${shortName}`, 
+  id_enseignant,id_user,
+  photo: `${photo}`,
+  lastName:`${lastName}`,
+  firstName:`${firstName}`, 
+  NbreTests:nbTestt, 
 }
 
  IDMat.push(jmatid);
 }    
         res.status(200).json({Classe,IDMat,ListEtudiants});
   }catch(err) {
+    console.log(err)
     res.status(500).json('false');
   
       }

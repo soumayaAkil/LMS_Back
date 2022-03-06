@@ -36,7 +36,7 @@ module.exports = class classe {
         return db.execute('DELETE FROM classe WHERE id_classe = ?', [id_classe]);
       }
       static countStudents(id_classe,etud){
-        return db.execute('SELECT count(*) FROM user WHERE id_classe = ? AND type=?', [id_classe,etud]);
+        return db.execute('SELECT count(*) as nbclass FROM user WHERE id_classe = ? AND type=?', [id_classe,etud]);
       }
       static fetchAll(){
         return db.execute ('SELECT * FROM classe');
@@ -54,4 +54,7 @@ module.exports = class classe {
      static getId() {
         return db.execute ('SELECT max(id_classe) as id FROM classe ');
      } 
+     static countTests(id_chapitre){
+      return db.execute('SELECT count(*) as nn FROM test WHERE id_chapitre = ?', [id_chapitre]);
+    }
 };

@@ -23,8 +23,7 @@ exports.loadStudentDetails= async (req,res,next)=>{
           const datarestest = await resTest.fetchResultatsByUser(results[j].id_user);
       
         for(var i=0;i<datarestest[0].length;i++){
-         console.log("iiiiiiiiiiii",i);
-          console.log("jjjjj",j);
+      
             const resultTestEtudiant =datarestest[0][i].totalMarks;
             const datatest = await test.fetchByIdTest(datarestest[0][i].idTest);
           console.log("resultTestEtudiant",resultTestEtudiant);
@@ -58,6 +57,38 @@ exports.loadStudentDetails= async (req,res,next)=>{
     });
    
   }
+  exports.getEtudNonc=async(req,res,next)=>{
+try{
+  [resE]=await etudiant.fetchEtudiantsNON();
+ let  ETUDList=[];
+for(var i=0;i<resE.length;i++)
+{
+  id_user=resE[i].id_user;
+  photo=resE[i].photo;
+  lastName=resE[i].lastName;
+  firstName=resE[i].firstName;
+
+
+let json = {
+  id_etudiant:id_user,
+  photo: `${photo}`,
+  lastName:`${lastName}`,
+  firstName:`${firstName}`, 
+}
+
+ETUDList.push(json);
+}        
+      res.status(200).json(ETUDList);
+
+
+
+}catch(err) {
+  console.log(err)
+  res.status(500).json('false');
+
+    }
+ 
+};
 
 
    

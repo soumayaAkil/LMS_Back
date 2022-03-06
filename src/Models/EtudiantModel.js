@@ -11,6 +11,9 @@ module.exports = class etudiant {
       static fetchEtudiants() {
         return db.execute('SELECT * FROM user WHERE type = "etudiant"');
       }
+      static fetchEtudiantsNON() {
+        return db.execute('SELECT * FROM user WHERE type ="etudiant" AND id_classe=0');
+      }
 };
 
 
