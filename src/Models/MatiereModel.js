@@ -27,6 +27,7 @@ module.exports = class matiere {
   }
   
   
+  
 
     static fetchByIdProf(id_user) {
       return db.execute('SELECT * FROM matiere WHERE id_user = ?', [id_user]);
@@ -44,4 +45,8 @@ module.exports = class matiere {
     }
     
 
+     //Getdetailmatiere
+     static getdetailmatiere(id_matiere){
+      return db.execute('SELECT * FROM matiere WHERE id_matiere = ?',[id_matiere]);
+    }
 };

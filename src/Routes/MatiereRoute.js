@@ -5,6 +5,7 @@ router.delete('/DeleteMatiere', MatController.delete);
 router.put('/EditMatiere', MatController.update);
 router.get('/getAllM',MatController.get);
 router.post('/AddMatiere',MatController.save);
+router.get('/Getdetailmatiere/:id_matiere',MatController.getdetailmatiere);
 module.exports=router;  
 
 /*router.get('/GetAllClasses', ClasseController.getAllClasses);
