@@ -18,6 +18,9 @@ module.exports = class Enseignant {
         ,[id_user]);
      
     }
+    static fetchAll() {
+      return db.execute('SELECT * FROM user WHERE type="enseignant"');
+    }
 };
 
 

@@ -184,4 +184,19 @@ listEtud.push(jsonEtud);
         }
      
       };
+      exports.getAllEns = async(req, res, next) => {
+        try {
+        const [profsList] = await Enseignant.fetchAll();
+        console.log(profsList)
+           
+              res.status(200).json(profsList);
+        
+        
+        
+        }catch(err) {
+          res.status(500).json('false');
+        
+            }
+         
+        };
   
