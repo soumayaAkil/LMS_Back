@@ -6,6 +6,8 @@ router.put('/EditMatiere', MatController.update);
 router.get('/getAllM',MatController.get);
 router.post('/AddMatiere',MatController.save);
 router.get('/Getdetailmatiere/:id_matiere',MatController.getdetailmatiere);
+//Matiere non affecter au classe
+router.get('/GetMatieresNAC',MatController.getMNAC);
 module.exports=router;  
 
 /*router.get('/GetAllClasses', ClasseController.getAllClasses);

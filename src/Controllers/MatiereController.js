@@ -146,5 +146,26 @@ const user=require('../models/UserModel');
       });
    }
   }
+    //Matiere non affecter au classe
+        exports.getMNAC= async(req, res, next) => {
+          const reslt= await matiere.GetMatieresNAC();
+          rows = reslt[0];
+          if(rows.length !== 0)
+          {
+               res.json({
+                  succes: true,
+                  test: rows,
+              });
+      
+          } else 
+           {
+              res.json({
+                  succes: false,
+                  message: 'aucune matiere',
+              });
+           }
+          
+     
+          };
 
 

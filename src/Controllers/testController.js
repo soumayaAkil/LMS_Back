@@ -101,11 +101,16 @@ const restestt=require('../Models/resTestModel')
     //Add Test
     exports.save= async (req,res,next)=>{
         duration =req.body.duration;
-        let date_ob = new Date();
-        creationDate  =date_ob;
-        idChapitre=req.body.idChapitre;
+        console.log(duration);
+        Datee =req.body.date;
+        console.log(Datee);
+        idChapitre=req.body.id_chapitre;
+        console.log(idChapitre);
         published=req.body.published;
-        const ress= await test.save(duration,creationDate,idChapitre,published);
+        console.log(published);
+        heure=req.body.heure;
+        console.log(heure);
+        const ress= await test.save(duration,Datee,idChapitre,published,heure);
         rows = ress[0];
         console.log("rowss ",rows)
         if(rows.length !== 0)
