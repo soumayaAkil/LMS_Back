@@ -5,4 +5,4 @@ const EtudiantController=require("../Controllers/EtudiantController");
 router.get('/LoadStudentDetail', EtudiantController.loadStudentDetails);
 router.get('/EtudiantNONC', EtudiantController.getEtudNonc);
 
-module.exports=router;  
+module.exports=router;

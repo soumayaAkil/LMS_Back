@@ -39,14 +39,14 @@ const nodemailer = require("nodemailer");
 
     const ress= await user.InvitUser(lastName ,firstName ,email,type ,invitation ,creationDate,id_classe);
     rows = ress[0];
-    console.log("rowss ",rows)
 
+    console.log(rows);
     
   try {
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "maillll",
+        user: "wajih12333@gmail.com",
         pass: 'passss'
       }
     });
@@ -157,7 +157,7 @@ const nodemailer = require("nodemailer");
                           <tr>
                             <td
                               style="mso-line-height-rule: exactly; mso-padding-alt: 16px 24px; border-radius: 4px; background-color: #119D90; font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif;">
-                              <a href="http://localhost:4200"
+                              <a href="http://localhost:4200/#/register/` + rows.insertId + `"
                                 style="font-family: 'Montserrat', sans-serif; mso-line-height-rule: exactly; display: block; padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; font-size: 16px; font-weight: 600; line-height: 100%; color: #ffffff; text-decoration: none;">Inscription
                                 &rarr;</a>
                             </td>
@@ -216,7 +216,7 @@ const nodemailer = require("nodemailer");
     id_user=req.params.id_user;
    // photo  =req.body.photo ;
     phone  =req.body.phone ;
-    birthDate  =req.body.birthDate ;
+    birthDate  = new Date(req.body.birthDate).toISOString().split('T')[0];
     pwd  =req.body.pwd;
     invitation  ="Accomplished";
    
