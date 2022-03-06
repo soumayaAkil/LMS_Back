@@ -173,8 +173,63 @@ exports.getList = async (req, res, next) => {
 
   } catch (err) {
     res.status(500).json('false');
+  }
+  };
 
-
+ 
+    exports.getList= async(req, res, next) => {
+      
+    try {
+        id_user=req.params.id_user;
+        let listEtud=[];
+        const [nbmat] = await matiere.countMatieres(id_user);
+        const nb=nbmat[0].c
+        //fetchid classe
+        const [Matieres] = await matiere.fetchByIdProf(id_user);
+      
+        for(var j=0;j<Matieres.length;j++)
+        {
+        id_classe=Matieres[0].id_classe;
+const [Etudiants] = await etud.fetchByIdClasse(id_classe,"etudiant");
+ for(var i=0;i<Etudiants.length;i++)
+{
+id_etudiant=Etudiants[i].id_user;
+lastName=Etudiants[i].lastName;
+firstName=Etudiants[i].firstName;
+email=Etudiants[i].email;
+photo=Etudiants[i].photo;
+phone=Etudiants[i].phone;
+birthDate=Etudiants[i].birthDate;
+pwd=Etudiants[i].pwd;
+type=Etudiants[i].type;
+invitation=Etudiants[i].invitation;
+creationDate=Etudiants[i].creationDate;
+let jsonEtud = {
+    id_etudiant:id_etudiant,
+    lastName: `${lastName}`,
+    firstName:`${firstName}`,
+    email:`${email}`,
+    photo:`${photo}`,
+    phone:`${phone}`,
+    birthDate:`${birthDate}`,
+    pwd:`${pwd}`,
+    type:`${type}`,
+    invitation:`${invitation}`,
+    creationDate:`${creationDate}`    
   }
 
-};
+listEtud.push(jsonEtud);
+}
+        }
+    res.status(200).json({listEtud,nb});
+  
+     
+    }catch(err) {
+      console.log(err)
+      res.status(500).json('false');
+  
+    
+        }
+     
+      };
+  

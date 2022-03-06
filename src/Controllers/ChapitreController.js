@@ -1,5 +1,6 @@
 const chapitre=require('../models/ChapitreModel');
 const attachments=require('../models/AttachementsModel');
+const testModel=require('../models/testModel');
 
  // delete chapitre
  exports.delete = async(req, res, next) => {
@@ -94,7 +95,8 @@ exports.getChapitreByMat= async (req,res,next)=>{
 
         const attach= await attachments.getAttachByChapitre(results[j].id_chapitre);
     
-       
+       const restestchap = await testModel.findIdTestByChapitre(results[j].id_chapitre);
+       console.log("restestchap",restestchap[0].length);
       
         const resultAttach = attach[0];
       
@@ -107,26 +109,52 @@ exports.getChapitreByMat= async (req,res,next)=>{
         let creationDate=results[j].creationDate;
         let id_matiree=results[j].id_matiere;
       
-      
-      
-          if (data[0].length !== 0 && resultAttach[0] !== 0 ){
-              ress={
-                  id_chapitre:id_chap,
-                  name:name,
-                  shortName:shortName,
-                  hours:hours,
-                  descr:descr,
-                  semester:semester,
-                  creationDate:creationDate,
-                  id_matiere:id_matiree,
-                  attachment:resultAttach
-              };
-      
-             
-      
+        if(restestchap[0].length>0)
+        {
+            if (data[0].length !== 0 && resultAttach[0] !== 0 ){
+                ress={
+                    id_chapitre:id_chap,
+                    name:name,
+                    shortName:shortName,
+                    hours:hours,
+                    descr:descr,
+                    semester:semester,
+                    creationDate:creationDate,
+                    id_matiere:id_matiree,
+                    nbrTest:restestchap[0].length,
+                    tests:restestchap[0],
+                    attachment:resultAttach
+                };
+        
                
-            }
-            tab.push(ress);
+        
+                 
+              }
+              tab.push(ress);
+        }
+      else
+      {
+        if (data[0].length !== 0 && resultAttach[0] !== 0 ){
+            ress={
+                id_chapitre:id_chap,
+                name:name,
+                shortName:shortName,
+                hours:hours,
+                descr:descr,
+                semester:semester,
+                creationDate:creationDate,
+                id_matiere:id_matiree,
+                nbrTest:restestchap[0].length,
+                attachment:resultAttach
+            };
+    
+           
+    
+             
+          }
+          tab.push(ress);
+      }
+         
          
     }
     res.json({
