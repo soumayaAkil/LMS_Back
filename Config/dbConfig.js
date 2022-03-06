@@ -5,7 +5,8 @@ const mysql = require("mysql2");
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'lms'
+        database: 'lms',
+        port: '3308'
     });
     
     module.exports = pool.promise();

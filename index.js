@@ -12,6 +12,7 @@ const reponseRoute = require("./src/Routes/reponseRoute");
 const questionRoute = require("./src/Routes/questionRoute");
 const EtudiantRoute = require("./src/Routes/EtudiantRoute");
 
+
 const dotenv = require('dotenv');
 
 var dbConn= require('./Config/db')
@@ -29,7 +30,7 @@ app.use(bodyParser.json())
 // define a root route
 
 app.use(express.json())
-app.use(cors({origin:"http://localhost:3000"}));
+app.use(cors());
 
 app.use("/Enseignanat",enseignantRoute);
 app.use("/Classe",classeRoute);
@@ -41,6 +42,7 @@ app.use("/Attachement",attachementsRoute);
 app.use("/Reponse",reponseRoute);
 app.use("/Question",questionRoute);
 app.use("/Etudiant",EtudiantRoute);
+app.use('/uploads',express.static('./src/uploads/files'));
 
 app.use("/auth",authRoute);
 // listen for requests
