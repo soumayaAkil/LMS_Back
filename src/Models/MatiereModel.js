@@ -21,9 +21,9 @@ module.exports = class matiere {
       return db.execute('SELECT * FROM matiere');
     }
     //add matiere
-    static save(name,hours,type,coef,shortname,descr,creationDate,id_classe){
-      return db.execute('INSERT  INTO matiere (name,hours,type,coef,shortname,descr,creationDate,id_classe) VALUES (?,?,?,?,?,?,?,?)',
-      [name,hours,type,coef,shortname,descr,creationDate,id_classe]);
+    static save(name,hours,type,coef,shortname,descr,creationDate,id_classe,id_user){
+      return db.execute('INSERT  INTO matiere (name,hours,type,coef,shortname,descr,creationDate,id_classe,id_user) VALUES (?,?,?,?,?,?,?,?,?)',
+      [name,hours,type,coef,shortname,descr,creationDate,id_classe,id_user]);
   }
   
   

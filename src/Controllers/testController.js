@@ -152,6 +152,12 @@ const restestt=require('../Models/resTestModel')
         const id_test = req.body.idTest;
          let restest =0 ;
          idQuestion=req.body.quesRep[0].idQuestion;
+         for (let i = 0; i <req.body.quesRep.length; i++)
+         {
+          
+              var quest= req.body.quesRep[i].idQuestion;
+              console.log(quest);
+           
          const repres=await reponse.findRepByQuestId(idQuestion); 
      
         if(repres[0].length!=tab.length){
@@ -182,7 +188,10 @@ const restestt=require('../Models/resTestModel')
             }else{
                 let pondquest=await test.getponderation(idQuestion);   
               restest=restest+(pondquest[0][0].Marks);
+           
+              
             }
+        }
         }
         res.json ({note:restest
            

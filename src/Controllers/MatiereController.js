@@ -119,16 +119,16 @@ const user=require('../models/UserModel');
  //add matiere
  exports.save= async (req,res,next)=>{
   namee =req.body.name;
- 
   hours  =req.body.hours ;
- type =req.body.type ;
+ typee =req.body.type ;
  coef  =req.body.coef ;
  shortName  =req.body.shortname ;
   description  =req.body.descr ;
   let date_ob = new Date();
   creationDate  =date_ob;
   id_classe=req.body.id_classe;
-  const ress= await matiere.save(namee,hours,type,coef,shortName,description,creationDate,id_classe);
+  id_user=req.body.id_user;
+  const ress= await matiere.save(namee,hours,typee,coef,shortName,description,creationDate,id_classe,id_user);
   rows = ress[0];
   console.log("rowss ",rows)
   if(rows.length !== 0)

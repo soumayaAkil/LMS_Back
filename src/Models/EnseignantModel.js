@@ -7,6 +7,9 @@ module.exports = class Enseignant {
     static fetchByIdClasse(id_classe,type) {
         return db.execute('SELECT * FROM user WHERE id_classe = ? AND type=?', [id_classe,type]);
       }
+      static fetchById(id_user) {
+        return db.execute('SELECT * FROM user WHERE id_user = ?', [id_user]);
+      }
       static fetchByIdProf(id_user) {
         return db.execute('SELECT * FROM matiere WHERE id_user = ?', [id_user]);
       }

@@ -14,5 +14,5 @@ router.post('/AddTest', testController.save);
 //Publish test
 router.put('/publishtest/:idTest',testController.publishupdate);
 //submit test
-router.get('/submittestttt/ok',testController.submitTest);
+router.get('/submitTest',testController.submitTest);
 module.exports=router;  
