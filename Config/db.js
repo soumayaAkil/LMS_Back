@@ -5,7 +5,8 @@ const dbConn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database : 'lms'
+  database : 'lms',
+  port: '3308'
 });
 dbConn.connect(function(err) {
   if (err) throw err;
