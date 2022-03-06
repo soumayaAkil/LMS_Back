@@ -49,4 +49,8 @@ module.exports = class matiere {
      static getdetailmatiere(id_matiere){
       return db.execute('SELECT * FROM matiere WHERE id_matiere = ?',[id_matiere]);
     }
+    //Matiere non affecter au classe
+    static GetMatieresNAC() {
+      return db.execute('SELECT * FROM matiere WHERE  id_classe=0');
+    }
 };

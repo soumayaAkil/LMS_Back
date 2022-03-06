@@ -138,14 +138,12 @@ listEtud.push(jsonEtud);
         const nb=nbmat[0].c
         //fetchid classe
         const [Matieres] = await matiere.fetchByIdProf(id_user);
-     
-        for(var i=0;i<Matieres.length;i++)
+      
+        for(var j=0;j<Matieres.length;j++)
         {
         id_classe=Matieres[0].id_classe;
-console.log(id_classe)
-//etud
 const [Etudiants] = await etud.fetchByIdClasse(id_classe,"etudiant");
-for(var i=0;i<Etudiants.length;i++)
+ for(var i=0;i<Etudiants.length;i++)
 {
 id_etudiant=Etudiants[i].id_user;
 lastName=Etudiants[i].lastName;
@@ -179,6 +177,7 @@ listEtud.push(jsonEtud);
   
      
     }catch(err) {
+      console.log(err)
       res.status(500).json('false');
   
     

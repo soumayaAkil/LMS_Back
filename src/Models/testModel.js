@@ -53,9 +53,9 @@ module.exports = class test {
         
     }
     //Add test
-    static save(duration,date,id_chapitre,published){
-        return db.execute('INSERT  INTO test (duration,date,id_chapitre,published) VALUES (?,?,?,?)',
-        [duration,date,id_chapitre,published]);
+    static save(duration,date,id_chapitre,published,heure){
+        return db.execute('INSERT  INTO test (duration,date,id_chapitre,published,heure) VALUES (?,?,?,?,?)',
+        [duration,date,id_chapitre,published,heure]);
     }
       static fetchByIdTest(idTest) {
         return db.execute('SELECT * FROM test WHERE idTest = ?',[idTest]);
