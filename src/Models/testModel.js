@@ -23,7 +23,7 @@ module.exports = class test {
       }
       //test detail
       static testDetails(idTest){
-        return db.execute ('SELECT chapitre.name,chapitre.semester,test.date ,test.duration  FROM chapitre JOIN test ON chapitre.id_chapitre = test.idChapitre  WHERE idTest = ?',[idTest]);
+        return db.execute ('SELECT chapitre.name,chapitre.semester,test.date ,test.duration  FROM chapitre JOIN test ON chapitre.id_chapitre = test.id_chapitre  WHERE idTest = ?',[idTest]);
     }
       //il ya des tests dans ce chapitre 
       static testInclutChap(id_chapitre){

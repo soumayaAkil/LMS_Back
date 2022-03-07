@@ -34,15 +34,15 @@ const restestt=require('../Models/resTestModel')
 
         let duration= req.body.duration;
         let date= req.body.date;
-        let idChapitre=req.body.idChapitre;
+        let id_chapitre=req.body.id_chapitre;
         let published= req.body.published;
-        const results= await chapitre.getDetailChapitre(idChapitre);
+        const results= await chapitre.getDetailChapitre(id_chapitre);
         const storedTest =results[0];
         const sortedTest2 =results[0][0];
     
                 if(storedTest.length >0)
                 {
-                    const rest= await test.update(duration,date,idChapitre,published,req.params.idTest);
+                    const rest= await test.update(duration,date,id_chapitre,published,req.params.idTest);
                     res.json({update:true}); 
                 }
                 else if(sortedTest2 == null)
@@ -82,9 +82,9 @@ const restestt=require('../Models/resTestModel')
      };
      //list test by id chapitre
      exports.getTestByChapitre= async (req,res,next)=>{
-        const idChapitre = req.params.idChapitre;
+        const id_chapitre = req.params.id_chapitre;
         
-        const data = await test.findTestByChapitre(idChapitre);
+        const data = await test.findTestByChapitre(id_chapitre);
         const results = data[0];
             if (data[0].length !== 0){
                 res.json({
@@ -104,13 +104,13 @@ const restestt=require('../Models/resTestModel')
         console.log(duration);
         Datee =req.body.date;
         console.log(Datee);
-        idChapitre=req.body.id_chapitre;
-        console.log(idChapitre);
+        id_chapitre=req.body.id_chapitre;
+        console.log(id_chapitre);
         published=req.body.published;
         console.log(published);
         heure=req.body.heure;
         console.log(heure);
-        const ress= await test.save(duration,Datee,idChapitre,published,heure);
+        const ress= await test.save(duration,Datee,id_chapitre,published,heure);
         rows = ress[0];
         console.log("rowss ",rows)
         if(rows.length !== 0)

@@ -19,7 +19,7 @@ module.exports = class Enseignant {
      
     }
     static fetchAll() {
-      return db.execute('SELECT * FROM user WHERE type="enseignant"');
+      return db.execute('SELECT * FROM user WHERE type="Professor"');
     }
 };
 

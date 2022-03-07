@@ -8,11 +8,11 @@ router.put('/UpdateTest/:idTest',testController.put);
 //detail test
 router.get('/detailstest/:idTest',testController.testDetailsc);
  //list test by id chapitre
-router.get('/allTestChap/:idChapitre', testController.getTestByChapitre);
+router.get('/allTestChap/:id_chapitre', testController.getTestByChapitre);
 //Add Test 
 router.post('/AddTest', testController.save);
 //Publish test
 router.put('/publishtest/:idTest',testController.publishupdate);
 //submit test
-router.get('/submitTest',testController.submitTest);
+router.post('/submitTest',testController.submitTest);
 module.exports=router;  
